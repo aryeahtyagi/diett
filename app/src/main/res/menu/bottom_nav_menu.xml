@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/inventoryFragment"
+        android:title="Inventory"
+        android:icon="@drawable/ic_fridg"/>
+    <item
+        android:id="@+id/shoppingListFragment"
+        android:title="Shipping List"
+        android:icon="@drawable/ic_shoppinglist"/>
+    <item
+        android:id="@+id/mealPlanFragment"
+        android:title="Meal Plan"
+        android:icon="@drawable/ic_mealplan"/>
+    <item
+        android:id="@+id/profileFragment"
+        android:title="Profile"
+        android:icon="@drawable/ic_profile"/>
+</menu>

@@ -1,0 +1,2 @@
+rootProject.name = "Diet Planner"
+include ':app'

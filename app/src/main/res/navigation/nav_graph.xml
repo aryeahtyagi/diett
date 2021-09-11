@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/inventoryFragment">
+
+    <fragment
+        android:id="@+id/inventoryFragment"
+        android:name="com.aryanakbarpour.dietplanner.InventoryFragment"
+        android:label="fragment_inventory"
+        tools:layout="@layout/fragment_inventory" />
+    <fragment
+        android:id="@+id/inventoryAddItem"
+        android:name="com.aryanakbarpour.dietplanner.InventoryAddItem"
+        android:label="fragment_inventory_add_item"
+        tools:layout="@layout/fragment_inventory_add_item" />
+    <fragment
+        android:id="@+id/mealPlanFragment"
+        android:name="com.aryanakbarpour.dietplanner.MealPlanFragment"
+        android:label="fragment_meal_plan"
+        tools:layout="@layout/fragment_meal_plan" />
+    <fragment
+        android:id="@+id/shoppingListFragment"
+        android:name="com.aryanakbarpour.dietplanner.ShoppingListFragment"
+        android:label="fragment_shopping_list"
+        tools:layout="@layout/fragment_shopping_list" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.aryanakbarpour.dietplanner.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+</navigation>
