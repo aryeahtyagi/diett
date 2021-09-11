@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.aryanakbarpour.dietplanner.databinding.FragmentInventoryBinding
 
 class InventoryFragment : Fragment() {
@@ -23,6 +24,11 @@ class InventoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.floatingActionButton.setOnClickListener {
+            val action = InventoryFragmentDirections.actionInventoryFragmentToInventoryAddItem()
+            this.findNavController().navigate(action)
+        }
     }
 
 }

@@ -9,12 +9,20 @@
         android:id="@+id/inventoryFragment"
         android:name="com.aryanakbarpour.dietplanner.InventoryFragment"
         android:label="fragment_inventory"
-        tools:layout="@layout/fragment_inventory" />
+        tools:layout="@layout/fragment_inventory" >
+        <action
+            android:id="@+id/action_inventoryFragment_to_inventoryAddItem"
+            app:destination="@id/inventoryAddItem" />
+    </fragment>
     <fragment
         android:id="@+id/inventoryAddItem"
         android:name="com.aryanakbarpour.dietplanner.InventoryAddItem"
         android:label="fragment_inventory_add_item"
-        tools:layout="@layout/fragment_inventory_add_item" />
+        tools:layout="@layout/fragment_inventory_add_item" >
+        <action
+            android:id="@+id/action_inventoryAddItem_to_inventoryFragment"
+            app:destination="@id/inventoryFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mealPlanFragment"
         android:name="com.aryanakbarpour.dietplanner.MealPlanFragment"
