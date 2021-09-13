@@ -5,7 +5,7 @@ import androidx.room.*
 @Entity(tableName = "ingredient_category")
 data class IngredientCategory (
     @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
+    val id: Long = 0,
     val categoryName: String
 )
 
@@ -19,10 +19,10 @@ data class IngredientCategory (
 ])
 class Ingredient (
     @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
+    val id: Long = 0,
     val ingredientName: String,
     @ColumnInfo(index = true)
-    val categoryId: Int
+    val categoryId: Long
 )
 
 data class CategorisedIngredients(

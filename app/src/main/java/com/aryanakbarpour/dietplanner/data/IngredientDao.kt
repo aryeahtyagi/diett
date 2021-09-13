@@ -6,16 +6,31 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface IngredientDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertIngredientCat(ingredientCategory: IngredientCategory)
+    suspend fun insertIngredientCat(ingredientCategory: IngredientCategory) : Long
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertIngredient(ingredient: Ingredient)
+    suspend fun insertIngredient(ingredient: Ingredient) : Long
+
+    @Query("SELECT id FROM ingredient_category WHERE categoryName = :name")
+    suspend fun getCategoryIdFromName(name: String): List<Long>
+
+    @Query("SELECT id FROM ingredient WHERE ingredientName = :name")
+    suspend fun getIngredientIdFromName(name: String): List<Long>
 
     @Query("SELECT * FROM ingredient WHERE ingredientName = :name")
     fun getIngredientFromName(name: String): Flow<List<Ingredient>>
 
     @Query("SELECT * FROM ingredient WHERE id = :id")
-    fun getIngredientFromId(id: Int): Flow<List<Ingredient>>
+    fun getIngredientFromId(id: Long): Flow<List<Ingredient>>
+
+    @Query("SELECT * FROM ingredient_category WHERE id = (SELECT categoryId FROM ingredient WHERE ingredientName = :name)")
+    fun getCategoryFromIngredientName(name: String) : Flow<List<IngredientCategory>>
+
+    @Query("SELECT * FROM ingredient")
+    fun getAllIngredients() : Flow<List<Ingredient>>
+
+    @Query("SELECT * FROM ingredient_category")
+    fun getAllIngredientCategories() : Flow<List<IngredientCategory>>
 
     @Transaction
     @Query("SELECT * FROM ingredient_category")

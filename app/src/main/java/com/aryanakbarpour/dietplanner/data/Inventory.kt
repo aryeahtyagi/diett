@@ -13,9 +13,9 @@ import java.util.*
 ])
 data class InventoryItemDetail(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Long = 0,
     @ColumnInfo(index = true)
-    val ingredientId: Int,
+    val ingredientId: Long,
     val quantity: String,
     val expiry: Date,
     val isFrozen: Boolean

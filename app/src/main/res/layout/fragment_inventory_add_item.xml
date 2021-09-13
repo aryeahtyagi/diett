@@ -8,7 +8,7 @@
     android:layout_margin="@dimen/margin">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ingredient_name_text_input"
+        android:id="@+id/ingredient_name_text_field"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,24 +19,26 @@
         app:endIconMode="none">
 
         <AutoCompleteTextView
+            android:id="@+id/ingredient_name_text_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/category_text_input"
+        android:id="@+id/category_text_field"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Ingredient Type"
         android:layout_marginTop="@dimen/margin_between_elements"
-        app:layout_constraintTop_toBottomOf="@id/ingredient_name_text_input"
+        app:layout_constraintTop_toBottomOf="@id/ingredient_name_text_field"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:endIconMode="none">
 
         <AutoCompleteTextView
+            android:id="@+id/category_text_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null" />
@@ -51,9 +53,10 @@
         android:hint="Available Amount"
         app:layout_constraintEnd_toStartOf="@id/amount_type_combo_box"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/category_text_input">
+        app:layout_constraintTop_toBottomOf="@id/category_text_field">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/quantity_text_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -85,15 +88,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:hint="Expiry Date"
-        app:endIconDrawable="@drawable/ic_calendar"
-        app:endIconMode="custom"
+        app:startIconDrawable="@drawable/ic_calendar"
         app:layout_constraintEnd_toStartOf="@id/is_frozen_switch"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/quantity_text_field">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/expiry_picker_input"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:editable="false" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.switchmaterial.SwitchMaterial

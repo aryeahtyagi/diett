@@ -2,4 +2,17 @@
     <string name="app_name">Diet Planner</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="units">
+        <item>pcs</item>
+        <item>kg</item>
+        <item>gr</item>
+        <item>mg</item>
+        <item>oz</item>
+        <item>L</item>
+        <item>mL</item>
+        <item>cL</item>
+        <item>lb</item>
+    </string-array>
+
 </resources>
