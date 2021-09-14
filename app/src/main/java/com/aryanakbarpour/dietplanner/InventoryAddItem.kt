@@ -42,6 +42,17 @@ class InventoryAddItem : Fragment() {
 
         binding.addItemConfirmBtn.setOnClickListener {addNewInventoryItem()}
 
+        setupIngredientField(view)
+        setupCategoryField(view)
+        setupExpiryPickerField(view)
+        setupUnitField(view)
+
+    }
+
+    /**
+     * Create and sets the adapter for ingredients auto complete from existing ingredients
+     */
+    private fun setupIngredientField(view: View) {
         // Setup ingredients inputs autocomplete values
         viewModel.retrieveIngredients().observe(this.viewLifecycleOwner) {
             val ingredientsListNames: MutableList<String>  = mutableListOf()
@@ -59,7 +70,12 @@ class InventoryAddItem : Fragment() {
                 }
 
         }
+    }
 
+    /**
+     * Create and set the adapter for categories auto complete from existing categories
+     */
+    private fun setupCategoryField(view: View) {
         // Setup categories inputs autocomplete values
         viewModel.retrieveIngredientCategories().observe(this.viewLifecycleOwner) {
             val categoriesNameList: MutableList<String> = mutableListOf()
@@ -69,7 +85,13 @@ class InventoryAddItem : Fragment() {
             val categoriesAutoCompleteAdapter = ArrayAdapter(view.context, R.layout.simple_list_item_1, categoriesNameList)
             binding.categoryTextInput.setAdapter(categoriesAutoCompleteAdapter)
         }
+    }
 
+
+    /**
+     * Binds a ExpiryPickerDialog to expiry picker
+     */
+    private fun setupExpiryPickerField(view: View) {
         // setup date picker
         val cal = Calendar.getInstance()
         val year = cal.get(Calendar.YEAR)
@@ -95,17 +117,21 @@ class InventoryAddItem : Fragment() {
                 )
                 datePickerDialog.show()
             }
-
-
         }
+    }
 
-        // Setup units
+    /**
+     * Create and sets the adapter for units field
+     */
+    private fun setupUnitField(view: View) {
         val units = resources.getStringArray(com.aryanakbarpour.dietplanner.R.array.units)
         val unitsAdapter = ArrayAdapter(view.context, R.layout.simple_list_item_1, units)
         binding.amountTypeExposedDropdown.setAdapter(unitsAdapter)
-
     }
 
+    /**
+     * Extracts the contents of fields and process them. Calls view model to insert an item.
+     */
     private fun addNewInventoryItem() {
 
         if (!validateInputFields())
@@ -116,7 +142,6 @@ class InventoryAddItem : Fragment() {
         val quantity = binding.quantityTextInput.text.toString() +
                         " " +
                         binding.amountTypeExposedDropdown.text.toString()
-
 
         val name = binding.ingredientNameTextInput.text.toString()
         val category = binding.categoryTextInput.text.toString()
@@ -134,6 +159,9 @@ class InventoryAddItem : Fragment() {
         findNavController().navigate(action)
     }
 
+    /**
+     * Checks the content of TextFields, sets error message if any field is invalid
+     */
     private fun validateInputFields() : Boolean {
 
         var checkValid : Boolean = true

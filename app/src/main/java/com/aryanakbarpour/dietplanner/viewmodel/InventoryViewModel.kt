@@ -7,6 +7,10 @@ import java.util.*
 
 class InventoryViewModel(private val ingredientDao: IngredientDao, private val inventoryDao: InventoryDao) : ViewModel() {
 
+    /**
+     * Calls ingredient and inventory Daos to insert an InventoryItem into the database from raw values. Inserts
+     * predecessors entry if ingredientName and ingredientCategoryName are not present.
+     */
     private fun insertInventoryItem(quantity: String, expiryDate: Date, frozen: Boolean,
                                     ingredientName: String, ingredientCategoryName: String) {
         viewModelScope.launch {
@@ -37,22 +41,38 @@ class InventoryViewModel(private val ingredientDao: IngredientDao, private val i
         }
     }
 
+    /**
+     * Retrieve list of all CategorisedIngredients(s)
+     */
     fun retrieveCategorisedIngredients(): LiveData<List<CategorisedIngredients>> {
         return ingredientDao.getCategorisedIngredients().asLiveData()
     }
 
+    /**
+     * Retrieve list of all Ingredient(s)
+     */
     fun retrieveIngredients(): LiveData<List<Ingredient>> {
         return ingredientDao.getAllIngredients().asLiveData()
     }
 
+    /**
+     * Retrieve a (list) of IngredientCategory from name
+     */
     fun retrieveCategoryFromIngredientName(name: String): LiveData<List<IngredientCategory>> {
         return ingredientDao.getCategoryFromIngredientName(name).asLiveData()
     }
 
+    /**
+     * Retrieve list of all IngredientCategory(s)
+     */
     fun retrieveIngredientCategories(): LiveData<List<IngredientCategory>> {
         return ingredientDao.getAllIngredientCategories().asLiveData()
     }
 
+    /**
+     * Calls insertInventoryItem(quantity: String, expiryDate: Date, frozen: Boolean,
+     * ingredientName: String, ingredientCategoryName: String)
+     */
     fun addNewInventoryItem(quantity: String, expiryDate: Date, frozen: Boolean, ingredientName: String, ingredientCategoryName: String) {
         insertInventoryItem(quantity, expiryDate, frozen, ingredientName, ingredientCategoryName)
     }
