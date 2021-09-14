@@ -17,14 +17,20 @@ interface IngredientDao {
     @Query("SELECT id FROM ingredient WHERE ingredientName = :name")
     suspend fun getIngredientIdFromName(name: String): List<Long>
 
+    @Query("SELECT * FROM ingredient WHERE id = :id")
+    fun getIngredientById(id: Long): Flow<Ingredient>
+
     @Query("SELECT * FROM ingredient WHERE ingredientName = :name")
     fun getIngredientFromName(name: String): Flow<List<Ingredient>>
 
     @Query("SELECT * FROM ingredient WHERE id = :id")
-    fun getIngredientFromId(id: Long): Flow<List<Ingredient>>
+    fun getIngredientFromId(id: Long): Ingredient
 
     @Query("SELECT * FROM ingredient_category WHERE id = (SELECT categoryId FROM ingredient WHERE ingredientName = :name)")
     fun getCategoryFromIngredientName(name: String) : Flow<List<IngredientCategory>>
+
+    @Query("SELECT categoryName FROM ingredient_category WHERE id = :id")
+    fun getCategoryNameFromId(id: Long): String
 
     @Query("SELECT * FROM ingredient")
     fun getAllIngredients() : Flow<List<Ingredient>>

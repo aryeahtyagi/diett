@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_inventoryFragment_to_inventoryAddItem"
             app:destination="@id/inventoryAddItem" />
+        <action
+            android:id="@+id/action_inventoryFragment_to_inventoryItemDetailFragment"
+            app:destination="@id/inventoryIteamDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/inventoryAddItem"
@@ -38,4 +41,16 @@
         android:name="com.aryanakbarpour.dietplanner.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/inventoryIteamDetailFragment"
+        android:name="com.aryanakbarpour.dietplanner.InventoryItemDetailFragment"
+        android:label="fragment_inventory_item_detail"
+        tools:layout="@layout/fragment_inventory_item_detail" >
+        <argument
+            android:name="item_id"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_inventoryIteamDetailFragment_to_inventoryFragment"
+            app:destination="@id/inventoryFragment" />
+    </fragment>
 </navigation>

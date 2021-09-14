@@ -14,15 +14,15 @@ interface InventoryDao {
     @Delete
     suspend fun deleteInventoryItem(inventoryItemDetail: InventoryItemDetail)
 
+    @Query("DELETE FROM inventory_item WHERE id = :id")
+    suspend fun deleteInventoryItemById(id: Long)
+
+    @Query("SELECT * FROM inventory_item WHERE id = :id")
+    fun getInventoryItemDetailById(id: Long): Flow<InventoryItemDetail>
+
     @Transaction
     @Query("SELECT * FROM ingredient")
     fun getIngredientInventoryItems(): Flow<List<IngredientInventoryItems>>
 
-    // Todo: check if this shit works
-    @Transaction
-    @Query("SELECT D.*, I.ingredientName FROM inventory_item D, ingredient I WHERE I.id = D.ingredientId")
-    fun getInventoryItems(): Flow<List<InventoryItem>>
-
-    // Todo: add sorting and filtering for inventoryItems
 
 }

@@ -32,7 +32,8 @@ data class IngredientInventoryItems(
 
 data class InventoryItem (
     @Embedded
-    val ingredientDetail: InventoryItemDetail,
-    val ingredientName: String
+    val inventoryItemDetail: InventoryItemDetail,
+    val ingredientName: String,
+    val categoryName: String
 
 )

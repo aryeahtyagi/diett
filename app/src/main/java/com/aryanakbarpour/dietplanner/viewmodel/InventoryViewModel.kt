@@ -41,6 +41,36 @@ class InventoryViewModel(private val ingredientDao: IngredientDao, private val i
         }
     }
 
+    fun retrieveIngredientById(id: Long): LiveData<Ingredient> {
+        return ingredientDao.getIngredientById(id).asLiveData()
+    }
+
+    fun deleteInventoryItemById(id: Long) {
+        viewModelScope.launch {
+            inventoryDao.deleteInventoryItemById(id)
+        }
+    }
+
+    fun updateInventoryItemDetail(itemDetail: InventoryItemDetail) {
+        viewModelScope.launch {
+            inventoryDao.updateInventoryItem(itemDetail)
+        }
+    }
+
+    /**
+     * Retrieve an inventory item detail by id
+     */
+    fun retrieveItemDetailById(id: Long): LiveData<InventoryItemDetail> {
+        return inventoryDao.getInventoryItemDetailById(id).asLiveData()
+    }
+
+    /**
+     * Retrieve list of all inventory items
+     */
+    fun retrieveIngredientInventoryItems(): LiveData<List<IngredientInventoryItems>> {
+        return inventoryDao.getIngredientInventoryItems().asLiveData()
+    }
+
     /**
      * Retrieve list of all CategorisedIngredients(s)
      */
