@@ -35,7 +35,14 @@
         android:id="@+id/shoppingListFragment"
         android:name="com.aryanakbarpour.dietplanner.ShoppingListFragment"
         android:label="fragment_shopping_list"
-        tools:layout="@layout/fragment_shopping_list" />
+        tools:layout="@layout/fragment_shopping_list" >
+        <action
+            android:id="@+id/action_shoppingListFragment_to_shoppingAddItemFragment"
+            app:destination="@id/shoppingAddItemFragment" />
+        <action
+            android:id="@+id/action_shoppingListFragment_to_shoppingCreateInventoryItem"
+            app:destination="@id/shoppingCreateInventoryItem" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.aryanakbarpour.dietplanner.ProfileFragment"
@@ -52,5 +59,23 @@
         <action
             android:id="@+id/action_inventoryIteamDetailFragment_to_inventoryFragment"
             app:destination="@id/inventoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/shoppingAddItemFragment"
+        android:name="com.aryanakbarpour.dietplanner.ShoppingAddItemFragment"
+        android:label="fragment_shopping_add_item"
+        tools:layout="@layout/fragment_shopping_add_item" >
+        <action
+            android:id="@+id/action_shoppingAddItemFragment_to_shoppingListFragment"
+            app:destination="@id/shoppingListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/shoppingCreateInventoryItem"
+        android:name="com.aryanakbarpour.dietplanner.ShoppingCreateInventoryItem"
+        android:label="fragment_shopping_create_inventory_item"
+        tools:layout="@layout/fragment_shopping_create_inventory_item" >
+        <action
+            android:id="@+id/action_shoppingCreateInventoryItem_to_shoppingListFragment"
+            app:destination="@id/shoppingListFragment" />
     </fragment>
 </navigation>

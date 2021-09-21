@@ -10,7 +10,7 @@
     <TextView
         android:id="@+id/ingredient_name"
         style="@style/Widget.Inventory.ListItemTextView"
-        android:layout_width="150dp"
+        android:layout_width="250dp"
         android:layout_marginStart="@dimen/margin_between_elements"
         android:fontFamily="sans-serif"
         app:layout_constraintEnd_toStartOf="@+id/quantity"
@@ -21,26 +21,16 @@
     <TextView
         android:id="@+id/quantity"
         style="@style/Widget.Inventory.ListItemTextView"
-        android:layout_marginStart="@dimen/margin_between_elements"
         android:layout_width="80dp"
-        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/margin_between_elements"
+        android:layout_marginEnd="8dp"
 
-        app:layout_constraintStart_toEndOf="@+id/ingredient_name"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="70 cl"/>
-
-    <TextView
-        android:id="@+id/expiry"
-        style="@style/Widget.Inventory.ListItemTextView"
-        android:layout_width="wrap_content"
-        android:layout_marginStart="8dp"
-        android:drawableEnd="@drawable/ic_frozen"
         android:fontFamily="sans-serif"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/quantity"
+        app:layout_constraintStart_toEndOf="@+id/ingredient_name"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="20/3/5006" />
-
+        tools:text="70 cl" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

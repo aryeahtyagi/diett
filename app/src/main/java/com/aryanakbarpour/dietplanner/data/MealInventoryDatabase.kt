@@ -6,12 +6,14 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
-@Database(entities = [IngredientCategory::class, Ingredient::class, InventoryItemDetail::class], version = 1, exportSchema = false)
+@Database(entities = [IngredientCategory::class, Ingredient::class, InventoryItemDetail::class, ShoppingItemDetail::class], version = 2, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class MealInventoryDatabase : RoomDatabase() {
     abstract fun ingredientDao(): IngredientDao
 
     abstract fun inventoryDao(): InventoryDao
+
+    abstract fun shoppingDao(): ShoppingDao
 
     companion object {
         @Volatile

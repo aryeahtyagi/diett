@@ -5,7 +5,8 @@ import com.aryanakbarpour.dietplanner.data.*
 import kotlinx.coroutines.launch
 import java.util.*
 
-class InventoryViewModel(private val ingredientDao: IngredientDao, private val inventoryDao: InventoryDao) : ViewModel() {
+class InventoryViewModel(private val ingredientDao: IngredientDao,
+                         private val inventoryDao: InventoryDao) : ViewModel() {
 
     /**
      * Calls ingredient and inventory Daos to insert an InventoryItem into the database from raw values. Inserts
