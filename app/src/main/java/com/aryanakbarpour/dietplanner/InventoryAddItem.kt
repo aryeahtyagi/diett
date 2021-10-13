@@ -110,6 +110,7 @@ class InventoryAddItem : Fragment() {
                         expiryDate = cal.time
                         println(expiryDate.toString())
                         binding.expiryPickerField.isErrorEnabled = false
+
                     },
                     year,
                     month,

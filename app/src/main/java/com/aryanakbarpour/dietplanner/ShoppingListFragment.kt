@@ -74,14 +74,13 @@ class ShoppingListFragment : Fragment() {
                         }
                         ItemTouchHelper.RIGHT -> {
                             //Check item
+                            println("checking item : ${viewHolder.adapterPosition}")
                             val oldItem = shoppingItemList[viewHolder.adapterPosition]
                             val checkedItem = viewModel.setCheckShoppingItem(oldItem.shoppingItemDetail, true)
                             shoppingItemList.removeAt(viewHolder.adapterPosition)
-                            adapter.notifyItemRemoved(viewHolder.adapterPosition)
+                            //adapter.notifyItemRemoved(viewHolder.adapterPosition)
                             shoppingItemList.add(ShoppingItem(checkedItem, oldItem.ingredientName, oldItem.categoryName))
-                            adapter.notifyItemInserted(shoppingItemList.size-1)
-
-
+                            //adapter.notifyItemInserted(shoppingItemList.size-1)
                         }
                     }
 
@@ -92,7 +91,6 @@ class ShoppingListFragment : Fragment() {
             itemTouchHelper.attachToRecyclerView(binding.recyclerView)
 
         }
-
 
         // setup fab button
         binding.floatingActionButton.setOnClickListener {
