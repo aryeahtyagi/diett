@@ -5,6 +5,7 @@
     <string name="delete_question">Are you sure you want to delete?</string>
     <string name="no">No</string>
     <string name="yes">Yes</string>
+    <string name="recipe_image_guide">*Tap on the image to add or change the cover image</string>
 
     <string-array name="units">
         <item>pcs</item>

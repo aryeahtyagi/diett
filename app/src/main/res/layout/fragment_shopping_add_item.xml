@@ -14,10 +14,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Ingredient"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:endIconMode="none"
         app:layout_constraintEnd_toEndOf="parent"
-        app:endIconMode="none">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <AutoCompleteTextView
             android:id="@+id/ingredient_name_text_input"

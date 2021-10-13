@@ -8,8 +8,8 @@ import androidx.room.TypeConverters
 
 @Database(entities = [IngredientCategory::class, Ingredient::class,
                       InventoryItemDetail::class, ShoppingItemDetail::class,
-                      Cuisine::class, FoodType::class, Diet::class, RecipeDetail::class, RecipeIngredientCrossRef::class],
-          version = 5, exportSchema = false)
+                      Cuisine::class, FoodType::class, Diet::class, RecipeDetail::class, RecipeIngredientDetail::class],
+          version = 6, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class MealInventoryDatabase : RoomDatabase() {
     abstract fun ingredientDao(): IngredientDao

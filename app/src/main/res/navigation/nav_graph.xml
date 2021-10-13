@@ -47,7 +47,11 @@
         android:id="@+id/profileFragment"
         android:name="com.aryanakbarpour.dietplanner.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_recipesListFragment"
+            app:destination="@id/recipesListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/inventoryIteamDetailFragment"
         android:name="com.aryanakbarpour.dietplanner.InventoryItemDetailFragment"
@@ -77,5 +81,23 @@
         <action
             android:id="@+id/action_shoppingCreateInventoryItem_to_shoppingListFragment"
             app:destination="@id/shoppingListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipesListFragment"
+        android:name="com.aryanakbarpour.dietplanner.RecipesListFragment"
+        android:label="fragment_recipes_list"
+        tools:layout="@layout/fragment_recipes_list" >
+        <action
+            android:id="@+id/action_recipesListFragment_to_createRecipeFragment"
+            app:destination="@id/createRecipeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createRecipeFragment"
+        android:name="com.aryanakbarpour.dietplanner.CreateRecipeFragment"
+        android:label="fragment_create_recipe"
+        tools:layout="@layout/fragment_create_recipe" >
+        <action
+            android:id="@+id/action_createRecipeFragment_to_recipesListFragment"
+            app:destination="@id/recipesListFragment" />
     </fragment>
 </navigation>

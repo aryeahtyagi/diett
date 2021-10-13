@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.aryanakbarpour.dietplanner.databinding.FragmentProfileBinding
+import com.aryanakbarpour.dietplanner.databinding.FragmentRecipesListBinding
 
 
-class ProfileFragment : Fragment() {
+class RecipesListFragment : Fragment() {
 
-    private var _binding: FragmentProfileBinding? = null
+    private var _binding: FragmentRecipesListBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -19,15 +19,16 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentProfileBinding.inflate(inflater, container, false)
+        _binding = FragmentRecipesListBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.button.setOnClickListener {
-            val action = ProfileFragmentDirections.actionProfileFragmentToRecipesListFragment()
+        // setup fab button
+        binding.floatingActionButton.setOnClickListener {
+            val action = RecipesListFragmentDirections.actionRecipesListFragmentToCreateRecipeFragment()
             this.findNavController().navigate(action)
         }
     }

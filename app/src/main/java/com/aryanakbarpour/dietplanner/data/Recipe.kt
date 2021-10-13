@@ -61,38 +61,64 @@ data class RecipeDetail(
     val cuisineId: Long
 )
 
-@Entity(primaryKeys = ["recipeId", "ingredientId"])
-data class RecipeIngredientCrossRef(
+@Entity(tableName = "recipe_ingredient",foreignKeys = [
+    ForeignKey(
+        entity = RecipeDetail::class,
+        parentColumns = arrayOf("id"),
+        childColumns = arrayOf("recipeId"),
+        onDelete = ForeignKey.CASCADE
+    ),
+    ForeignKey(
+        entity = Ingredient::class,
+        parentColumns = arrayOf("id"),
+        childColumns = arrayOf("ingredientId"),
+        onDelete = ForeignKey.CASCADE
+    )])
+data class RecipeIngredientDetail(
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0,
     val recipeId: Long,
-    val ingredientId: Long
+    val ingredientId: Long,
+    val amount: String
+)
+
+data class RecipeIngredient(
+    @Embedded val recipeIngredientDetail: RecipeIngredientDetail,
+    @Relation(
+        parentColumn = "ingredientId",
+        entityColumn = "id"
+    )
+    val ingredient: Ingredient
 )
 
 data class Recipe(
     @Embedded val recipe: RecipeDetail,
+
     @Relation(
+        entity = RecipeIngredientDetail::class,
         parentColumn = "id",
-        entityColumn = "id",
-        associateBy = Junction(RecipeIngredientCrossRef::class, parentColumn = "recipeId", entityColumn = "ingredientId")
+        entityColumn = "recipeId",
     )
-    val ingredients: List<Ingredient>,
+    val ingredients: List<RecipeIngredient>,
+
     @Relation(
         parentColumn = "dietId",
         entityColumn = "id"
     )
     val diet: Diet,
+
     @Relation(
         parentColumn = "typeId",
         entityColumn = "id"
     )
     val foodType: FoodType,
+
     @Relation(
         parentColumn = "cuisineId",
         entityColumn = "id"
     )
     val cuisine: Cuisine
 )
-
-
 
 data class RecipesByCuisine(
     @Embedded val cuisine: Cuisine,
@@ -102,12 +128,3 @@ data class RecipesByCuisine(
     )
     val recipes: List<RecipeDetail>
 )
-//data class RecipesForIngredients(
-//    @Embedded val ingredient: Ingredient,
-//    @Relation(
-//        parentColumn = "id",
-//        entityColumn = "id",
-//        associateBy = Junction(RecipeIngredientCrossRef::class, parentColumn = "ingredientId", entityColumn = "recipeId")
-//    )
-//    val recipes: List<RecipeDetail>
-//)
