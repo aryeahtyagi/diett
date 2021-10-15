@@ -5,7 +5,7 @@ import androidx.room.*
 @Entity(tableName = "cuisine")
 data class Cuisine(
     @PrimaryKey(autoGenerate = true)
-    val id: Long,
+    val id: Long = 0,
     val name: String
 )
 
@@ -47,12 +47,11 @@ data class RecipeDetail(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val title: String,
-    val prepTime: String,
+    val prepTime: Int,
     val calories: Double,
     val instruction: String,
     val servings: Int,
-    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
-    val image: ByteArray? = null,
+    val image: String?,
     @ColumnInfo(index = true)
     val dietId: Long,
     @ColumnInfo(index = true)
