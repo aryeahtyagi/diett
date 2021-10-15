@@ -165,6 +165,7 @@ class CreateRecipeFragment : Fragment() {
         viewModel.retrieveFoodTypes().observe(this.viewLifecycleOwner) { foodTypeList ->
             val foodTypeNamesList = foodTypeList.map { it.name }
             val autoCompleteAdapter = ArrayAdapter(context, android.R.layout.simple_list_item_1, foodTypeNamesList)
+            binding.typeTextInput.setAdapter(autoCompleteAdapter)
         }
     }
 
