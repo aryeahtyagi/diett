@@ -79,6 +79,7 @@ class CreateRecipeFragment : Fragment() {
             val calories = binding.calsTextInput.text.toString().toDouble()
             val instruction = binding.instructionTextInput.text.toString()
 
+            println("yoooooooohooooooooooo, $imagePath")
             viewModel.insertRecipe(
                 dietName, foodTypeName, cuisineName, recipeIngredientsList,
                 title, servings, imagePath, instruction, prepTime, calories)

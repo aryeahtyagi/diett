@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aryanakbarpour.dietplanner.data.ShoppingItem
 import com.aryanakbarpour.dietplanner.databinding.FragmentShoppingListBinding
@@ -44,7 +44,7 @@ class ShoppingListFragment : Fragment() {
         val adapter = ShoppingItemAdapter()
 
 
-        binding.recyclerView.layoutManager = LinearLayoutManager(this.context)
+        binding.recyclerView.layoutManager = GridLayoutManager(this.context,1)
         binding.recyclerView.adapter = adapter
 
         viewModel.retrieveIngredientShoppingItems().observe(this.viewLifecycleOwner) { items ->

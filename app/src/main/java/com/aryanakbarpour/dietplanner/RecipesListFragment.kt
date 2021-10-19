@@ -5,11 +5,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.aryanakbarpour.dietplanner.databinding.FragmentRecipesListBinding
+import com.aryanakbarpour.dietplanner.viewmodel.RecipeViewModel
+import com.aryanakbarpour.dietplanner.viewmodel.RecipeViewModelFactory
 
 
 class RecipesListFragment : Fragment() {
+
+    private val viewModel: RecipeViewModel by activityViewModels{
+        RecipeViewModelFactory(
+            (activity?.application as DietPlannerApplication).database.recipeDao(),
+            (activity?.application as DietPlannerApplication).database.ingredientDao(),
+            (activity?.application as DietPlannerApplication).database.inventoryDao()
+        )
+    }
 
     private var _binding: FragmentRecipesListBinding? = null
     private val binding get() = _binding!!
@@ -26,6 +38,16 @@ class RecipesListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val adapter = RecipeItemAdapter()
+
+
+        binding.recyclerView.adapter = adapter
+
+        viewModel.retrieveAllRecipes().observe(this.viewLifecycleOwner) {items ->
+            adapter.submitList(items)
+        }
+
+        binding.recyclerView.layoutManager = GridLayoutManager(this.context,1)
         // setup fab button
         binding.floatingActionButton.setOnClickListener {
             val action = RecipesListFragmentDirections.actionRecipesListFragmentToCreateRecipeFragment()

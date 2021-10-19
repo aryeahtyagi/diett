@@ -13,7 +13,7 @@ class RecipeItemAdapter() : ListAdapter<Recipe, RecipeItemAdapter.ItemViewHolder
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): RecipeItemAdapter.ItemViewHolder {
+    ): ItemViewHolder {
         return ItemViewHolder(
             RecipeItemBinding.inflate(LayoutInflater.from(parent.context))
         )
@@ -26,12 +26,16 @@ class RecipeItemAdapter() : ListAdapter<Recipe, RecipeItemAdapter.ItemViewHolder
 
     class ItemViewHolder(private var binding: RecipeItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Recipe) {
-            binding.recipeThumbnail.setImageURI(Uri.parse(item.recipe.image))
-            binding.titleText.text = item.recipe.title
-            binding.cuisineText.text = item.cuisine.name
-            binding.caloriesText.text = item.recipe.calories.toString()
-            binding.dietText.text = item.diet.name
-            binding.preptimeText.text = item.recipe.prepTime.toString()
+            binding.apply {
+                if (item.recipe.image != null)
+                    recipeThumbnail.setImageURI(Uri.parse(item.recipe.image))
+                titleText.text = item.recipe.title
+                cuisineText.text = item.cuisine.name
+                caloriesText.text = item.recipe.calories.toString()
+                dietText.text = item.diet.name
+                preptimeText.text = item.recipe.prepTime.toString()
+            }
+
         }
     }
 

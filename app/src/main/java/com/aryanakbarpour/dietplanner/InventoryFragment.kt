@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.aryanakbarpour.dietplanner.data.InventoryItem
 import com.aryanakbarpour.dietplanner.databinding.FragmentInventoryBinding
 import com.aryanakbarpour.dietplanner.viewmodel.InventoryViewModel
@@ -41,7 +41,7 @@ class InventoryFragment : Fragment() {
             val action = InventoryFragmentDirections.actionInventoryFragmentToInventoryItemDetailFragment(it.inventoryItemDetail.id)
             this.findNavController().navigate(action)
         }
-        binding.recyclerView.layoutManager = LinearLayoutManager(this.context)
+        binding.recyclerView.layoutManager = GridLayoutManager(this.context,1)
         binding.recyclerView.adapter = adapter
         viewModel.retrieveIngredientInventoryItems().observe(this.viewLifecycleOwner) { items ->
             val inventoryItemsList : MutableList<InventoryItem> = mutableListOf()

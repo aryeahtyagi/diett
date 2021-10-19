@@ -34,9 +34,9 @@ class RecipeViewModel (private val recipeDao: RecipeDao, private val ingredientD
                 cuisineCheck[0]
 
             val imageString : String? = if (imageUri == null){
-                imageUri.toString()
-            } else{
                 null
+            } else{
+                imageUri.toString()
             }
 
             val newRecipeDetail = RecipeDetail(
@@ -90,6 +90,9 @@ class RecipeViewModel (private val recipeDao: RecipeDao, private val ingredientD
         return RecipeIngredientModel(category, ingredient, amount)
     }
 
+    fun retrieveAllRecipes(): LiveData<List<Recipe>> {
+        return recipeDao.getAllRecipes().asLiveData()
+    }
     // Auto Complete Stuff
 
     fun retrieveCuisines(): LiveData<List<Cuisine>> {
