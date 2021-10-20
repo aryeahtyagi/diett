@@ -5,9 +5,11 @@
       <map>
         <entry key="..\:/Surge/AndroidProjects/DietandIngredientsMonitor/workspace/app/src/main/res/layout/fragment_create_recipe.xml" value="0.17831813576494426" />
         <entry key="..\:/Surge/AndroidProjects/DietandIngredientsMonitor/workspace/app/src/main/res/layout/fragment_inventory.xml" value="0.17831813576494426" />
+        <entry key="..\:/Surge/AndroidProjects/DietandIngredientsMonitor/workspace/app/src/main/res/layout/fragment_recipe_detail.xml" value="0.36666666666666664" />
         <entry key="..\:/Surge/AndroidProjects/DietandIngredientsMonitor/workspace/app/src/main/res/layout/fragment_recipes_list.xml" value="0.1" />
+        <entry key="..\:/Surge/AndroidProjects/DietandIngredientsMonitor/workspace/app/src/main/res/layout/fragment_shopping_list.xml" value="0.19746376811594202" />
         <entry key="..\:/Surge/AndroidProjects/DietandIngredientsMonitor/workspace/app/src/main/res/layout/inventory_item.xml" value="0.36666666666666664" />
-        <entry key="..\:/Surge/AndroidProjects/DietandIngredientsMonitor/workspace/app/src/main/res/layout/recipe_item.xml" value="0.1" />
+        <entry key="..\:/Surge/AndroidProjects/DietandIngredientsMonitor/workspace/app/src/main/res/layout/recipe_item.xml" value="0.25" />
         <entry key="..\:/Surge/AndroidProjects/DietandIngredientsMonitor/workspace/app/src/main/res/layout/shoping_item_re.xml" value="0.1" />
         <entry key="..\:/Surge/AndroidProjects/DietandIngredientsMonitor/workspace/app/src/main/res/layout/shopping_item.xml" value="0.1" />
       </map>
