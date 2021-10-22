@@ -5,6 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface RecipeDao {
+    // Inserts
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertRecipe(recipeDetail: RecipeDetail) : Long
 
@@ -20,6 +21,16 @@ interface RecipeDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertRecipeIngredient(recipeIngredientDetail: RecipeIngredientDetail) : Long
 
+    // Updates
+
+    //Deletes
+    @Delete
+    suspend fun deleteRecipeIngredientDetail(recipeIngredientDetail: RecipeIngredientDetail)
+
+    @Delete
+    suspend fun deleteRecipeDetail(recipeDetail: RecipeDetail)
+
+    // Gets
     @Query("SELECT id FROM cuisine WHERE name = :name")
     suspend fun getCuisineIdFromName(name: String) : List<Long>
 
@@ -46,9 +57,6 @@ interface RecipeDao {
     @Query("SELECT * FROM recipe")
     fun getAllRecipes(): Flow<List<Recipe>>
 
-//    @Transaction
-//    @Query("SELECT * FROM ingredient")
-//    fun getSongsWithPlaylists(): List<RecipesForIngredients>
     @Transaction
     @Query("SELECT * FROM cuisine")
     fun getCuisineRecipes(): Flow<List<RecipesByCuisine>>

@@ -78,6 +78,9 @@
         <action
             android:id="@+id/action_recipesListFragment_to_createRecipeFragment"
             app:destination="@id/createRecipeFragment" />
+        <action
+            android:id="@+id/action_recipesListFragment_to_recipeDetailFragment"
+            app:destination="@id/recipeDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/createRecipeFragment"
@@ -86,6 +89,18 @@
         tools:layout="@layout/fragment_create_recipe" >
         <action
             android:id="@+id/action_createRecipeFragment_to_recipesListFragment"
+            app:destination="@id/recipesListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipeDetailFragment"
+        android:name="com.aryanakbarpour.dietplanner.RecipeDetailFragment"
+        android:label="fragment_recipe_detail"
+        tools:layout="@layout/fragment_recipe_detail" >
+        <argument
+            android:name="recipe_id"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_recipeDetailFragment_to_recipesListFragment"
             app:destination="@id/recipesListFragment" />
     </fragment>
 </navigation>

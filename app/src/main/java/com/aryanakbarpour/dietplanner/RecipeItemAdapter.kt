@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aryanakbarpour.dietplanner.data.Recipe
 import com.aryanakbarpour.dietplanner.databinding.RecipeItemBinding
 
-class RecipeItemAdapter() : ListAdapter<Recipe, RecipeItemAdapter.ItemViewHolder>(DiffCallback) {
+class RecipeItemAdapter(private val onItemClicked: (Recipe) -> Unit) : ListAdapter<Recipe, RecipeItemAdapter.ItemViewHolder>(DiffCallback) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -21,6 +21,7 @@ class RecipeItemAdapter() : ListAdapter<Recipe, RecipeItemAdapter.ItemViewHolder
 
     override fun onBindViewHolder(holder: RecipeItemAdapter.ItemViewHolder, position: Int) {
         val current = getItem(position)
+        holder.itemView.setOnClickListener { onItemClicked(current) }
         holder.bind(current)
     }
 

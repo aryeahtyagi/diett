@@ -1,59 +1,105 @@
 package com.aryanakbarpour.dietplanner
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import com.aryanakbarpour.dietplanner.data.Recipe
+import com.aryanakbarpour.dietplanner.databinding.FragmentRecipeDetailBinding
+import com.aryanakbarpour.dietplanner.viewmodel.RecipeViewModel
+import com.aryanakbarpour.dietplanner.viewmodel.RecipeViewModelFactory
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [RecipeDetailFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class RecipeDetailFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    lateinit var recipe: Recipe
+
+    private val viewModel: RecipeViewModel by activityViewModels {
+        RecipeViewModelFactory(
+            (activity?.application as DietPlannerApplication).database.recipeDao(),
+            (activity?.application as DietPlannerApplication).database.ingredientDao(),
+            (activity?.application as DietPlannerApplication).database.inventoryDao()
+        )
     }
+
+    private val navigationArgs: RecipeDetailFragmentArgs by navArgs()
+
+    private var _binding: FragmentRecipeDetailBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_recipe_detail, container, false)
+        _binding = FragmentRecipeDetailBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment RecipeDetailFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            RecipeDetailFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val id = navigationArgs.recipeId
+        viewModel.retrieveRecipeById(id).observe(this.viewLifecycleOwner) { recipeDetail ->
+            binding.apply {
+                title.text = recipeDetail.recipe.title
+                if (recipeDetail.recipe.image != null)
+                    recipeThumbnail.setImageURI(Uri.parse(recipeDetail.recipe.image))
+                dietText.text = recipeDetail.diet.name
+                cuisineText.text = recipeDetail.cuisine.name
+                typeText.text = recipeDetail.foodType.name
+                caloriesText.text = "${recipeDetail.recipe.calories.toString()} kcal"
+                servingsText.text = recipeDetail.recipe.servings.toString()
+                preptimeText.text = "${recipeDetail.recipe.prepTime}'"
+
+                instructionText.text = recipeDetail.recipe.instruction
+
+                for (ingredient in recipeDetail.ingredients){
+                    val newIngredientItem = layoutInflater.inflate(R.layout.shopping_item, null)
+                    newIngredientItem.id = recipeDetail.ingredients.size
+
+                    val listItemIngredientName = newIngredientItem.findViewById<TextView>(R.id.ingredient_name)
+                    val listItemAmount = newIngredientItem.findViewById<TextView>(R.id.quantity)
+
+                    listItemIngredientName.text = ingredient.ingredient.ingredientName
+                    listItemAmount.text = ingredient.recipeIngredientDetail.amount
+
+                    ingredientsList.addView(newIngredientItem)
                 }
+
+                deleteBtn.setOnClickListener { showDeleteConfirmationDialog(recipeDetail) }
             }
+        }
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun showDeleteConfirmationDialog(recipe: Recipe) {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(getString(android.R.string.dialog_alert_title))
+            .setMessage(getString(R.string.delete_question))
+            .setCancelable(false)
+            .setNegativeButton(getString(R.string.no)) { _, _ -> }
+            .setPositiveButton(getString(R.string.yes)) { _, _ ->
+                deleteRecipe(recipe)
+            }
+            .show()
+    }
+
+    private fun deleteRecipe(recipe: Recipe) {
+        viewModel.deleteRecipe(recipe)
+        val action = RecipeDetailFragmentDirections.actionRecipeDetailFragmentToRecipesListFragment()
+        findNavController().navigate(action)
+    }
+
 }

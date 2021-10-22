@@ -95,6 +95,10 @@ class RecipeViewModel (private val recipeDao: RecipeDao, private val ingredientD
     }
     // Auto Complete Stuff
 
+    fun retrieveRecipeById(id: Long) : LiveData<Recipe> {
+        return recipeDao.getRecipeById(id).asLiveData()
+    }
+
     fun retrieveCuisines(): LiveData<List<Cuisine>> {
         return recipeDao.getAllCuisines().asLiveData()
     }
@@ -127,6 +131,14 @@ class RecipeViewModel (private val recipeDao: RecipeDao, private val ingredientD
         return ingredientDao.getAllIngredientCategories().asLiveData()
     }
 
+    fun deleteRecipe(recipe: Recipe) {
+        viewModelScope.launch {
+            for (recipeIngredient in recipe.ingredients){
+                recipeDao.deleteRecipeIngredientDetail(recipeIngredient.recipeIngredientDetail)
+            }
+            recipeDao.deleteRecipeDetail(recipe.recipe)
+        }
+    }
 }
 
 data class RecipeIngredientModel(

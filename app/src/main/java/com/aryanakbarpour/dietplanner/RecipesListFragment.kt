@@ -38,7 +38,10 @@ class RecipesListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = RecipeItemAdapter()
+        val adapter = RecipeItemAdapter{
+            val action = RecipesListFragmentDirections.actionRecipesListFragmentToRecipeDetailFragment(it.recipe.id)
+            this.findNavController().navigate(action)
+        }
 
 
         binding.recyclerView.adapter = adapter
