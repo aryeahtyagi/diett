@@ -21,8 +21,12 @@ interface InventoryDao {
     fun getInventoryItemDetailById(id: Long): Flow<InventoryItemDetail>
 
     @Transaction
-    @Query("SELECT * FROM ingredient")
-    fun getIngredientInventoryItems(): Flow<List<IngredientInventoryItems>>
+    @Query("SELECT * FROM inventory_item")
+    fun getInventoryItems(): Flow<List<InventoryItem>>
+
+    @Transaction
+    @Query("SELECT * FROM ingredient WHERE id=:id")
+    suspend fun getIngredientInventoryItemsByIngredientId(id: Long): IngredientInventoryItems
 
 
 }

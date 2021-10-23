@@ -27,13 +27,16 @@ data class IngredientInventoryItems(
         parentColumn = "id",
         entityColumn = "ingredientId"
     )
-    val inventoryItemDetail: List<InventoryItemDetail>
+    val inventoryItemDetails: List<InventoryItemDetail>
 )
 
-data class InventoryItem (
-    @Embedded
-    val inventoryItemDetail: InventoryItemDetail,
-    val ingredientName: String,
-    val categoryName: String
-
+data class InventoryItem(
+    @Embedded val inventoryItemDetail: InventoryItemDetail,
+    @Relation(
+        parentColumn = "ingredientId",
+        entityColumn = "id"
+    )
+    val ingredient: Ingredient
 )
+
+

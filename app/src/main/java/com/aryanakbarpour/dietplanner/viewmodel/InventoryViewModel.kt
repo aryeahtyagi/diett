@@ -68,8 +68,8 @@ class InventoryViewModel(private val ingredientDao: IngredientDao,
     /**
      * Retrieve list of all inventory items
      */
-    fun retrieveIngredientInventoryItems(): LiveData<List<IngredientInventoryItems>> {
-        return inventoryDao.getIngredientInventoryItems().asLiveData()
+    fun retrieveAllInventoryItems(): LiveData<List<InventoryItem>> {
+        return inventoryDao.getInventoryItems().asLiveData()
     }
 
     /**

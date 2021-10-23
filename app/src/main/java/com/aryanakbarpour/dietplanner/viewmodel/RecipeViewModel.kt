@@ -139,6 +139,82 @@ class RecipeViewModel (private val recipeDao: RecipeDao, private val ingredientD
             recipeDao.deleteRecipeDetail(recipe.recipe)
         }
     }
+
+    fun inventoryProcessRecipeIngredients(recipeIngredients: List<RecipeIngredient>) {
+        viewModelScope.launch {
+            for (ri in recipeIngredients) {
+                val inventoryItems = inventoryDao.getIngredientInventoryItemsByIngredientId(ri.ingredient.id)
+                // check inventory items available
+
+                if (!inventoryItems.inventoryItemDetails.isEmpty()){
+                    // find the right inventory item
+                    var bestItemIndex = -1
+                    for ((index, invItem) in inventoryItems.inventoryItemDetails.withIndex()) {
+                        val recipeIngUnit = ri.recipeIngredientDetail.amount.split(' ')[1]
+                        val inventoryIngUnit = invItem.quantity.split(' ')[1]
+
+                        val recipeValue = ri.recipeIngredientDetail.amount.split(' ')[0].toDouble()
+                        val inventoryValue = invItem.quantity.split(' ')[0].toDouble()
+
+
+                        if(recipeIngUnit == inventoryIngUnit){
+                            if (bestItemIndex < 0) {
+                                bestItemIndex = index
+                                continue
+                            }
+
+                            val bestItemValue = inventoryItems.inventoryItemDetails[bestItemIndex].quantity.split(' ')[0].toDouble()
+                            val currentBestExpiry = inventoryItems.inventoryItemDetails[bestItemIndex].expiry
+
+                            if (recipeValue < inventoryValue) {
+                                if (currentBestExpiry.after(invItem.expiry) || bestItemValue <= recipeValue) {
+                                    bestItemIndex = index
+                                }
+                            } else {
+                                if (currentBestExpiry.after(invItem.expiry) && bestItemValue < recipeValue) {
+                                    bestItemIndex = index
+                                }
+                            }
+
+                        }
+                    }
+                    // best a suitable item found
+                    if (bestItemIndex >= 0) {
+                        val inventoryValue = inventoryItems.inventoryItemDetails[bestItemIndex].quantity.split(' ')[0].toDouble()
+                        val recipeValue = ri.recipeIngredientDetail.amount.split(' ')[0].toDouble()
+                        val newValue = inventoryValue - recipeValue
+
+                        if ( newValue <= 0.0) {
+                            // Delete inventory item
+                            inventoryDao.deleteInventoryItem(inventoryItems.inventoryItemDetails[bestItemIndex])
+                        } else {
+                            // Update inventory item
+
+                            val unitString = ri.recipeIngredientDetail.amount.split(' ')[1]
+                            val newValueString =  if (newValue % 1.0 < 0.01)
+                                newValue.toInt()
+                            else
+                                newValue
+
+                            val quantityString = "$newValueString $unitString"
+
+                            val newInventoryItemDetail = InventoryItemDetail(
+                                id = inventoryItems.inventoryItemDetails[bestItemIndex].id,
+                                quantity =quantityString,
+                                expiry = inventoryItems.inventoryItemDetails[bestItemIndex].expiry,
+                                ingredientId = ri.ingredient.id,
+                                isFrozen = inventoryItems.inventoryItemDetails[bestItemIndex].isFrozen
+                            )
+
+                            inventoryDao.updateInventoryItem(newInventoryItemDetail)
+                        }
+
+
+                    }
+                }
+            }
+        }
+    }
 }
 
 data class RecipeIngredientModel(

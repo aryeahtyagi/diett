@@ -74,7 +74,13 @@ class RecipeDetailFragment : Fragment() {
                     ingredientsList.addView(newIngredientItem)
                 }
 
-                deleteBtn.setOnClickListener { showDeleteConfirmationDialog(recipeDetail) }
+                deleteBtn.setOnClickListener {
+                    showDeleteConfirmationDialog(recipeDetail)
+                }
+
+                reduceInventoryBtn.setOnClickListener {
+                    viewModel.inventoryProcessRecipeIngredients(recipeDetail.ingredients)
+                }
             }
         }
     }

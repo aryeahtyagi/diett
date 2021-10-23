@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.aryanakbarpour.dietplanner.data.InventoryItem
 import com.aryanakbarpour.dietplanner.databinding.FragmentInventoryBinding
 import com.aryanakbarpour.dietplanner.viewmodel.InventoryViewModel
 import com.aryanakbarpour.dietplanner.viewmodel.InventoryViewModelFactory
@@ -43,17 +42,8 @@ class InventoryFragment : Fragment() {
         }
         binding.recyclerView.layoutManager = GridLayoutManager(this.context,1)
         binding.recyclerView.adapter = adapter
-        viewModel.retrieveIngredientInventoryItems().observe(this.viewLifecycleOwner) { items ->
-            val inventoryItemsList : MutableList<InventoryItem> = mutableListOf()
-            for (i in items) {
-                for (detail in i.inventoryItemDetail){
-                    inventoryItemsList.add(InventoryItem(detail, i.ingredient.ingredientName, ""))
-                }
-            }
-            inventoryItemsList.let {
-                println("submitting list of size : ${it.size}")
-                adapter.submitList(it)
-            }
+        viewModel.retrieveAllInventoryItems().observe(this.viewLifecycleOwner) {
+            adapter.submitList(it)
         }
 
 

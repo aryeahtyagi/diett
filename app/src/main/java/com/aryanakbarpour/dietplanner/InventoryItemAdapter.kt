@@ -34,7 +34,7 @@ class InventoryItemAdapter(private val onItemClicked: (InventoryItem) -> Unit) :
         fun bind(item: InventoryItem) {
 
             binding.apply {
-                ingredientName.text = item.ingredientName
+                ingredientName.text = item.ingredient.ingredientName
                 quantity.text = item.inventoryItemDetail.quantity
                 if (item.inventoryItemDetail.isFrozen) {
                     expiry.text = ""
