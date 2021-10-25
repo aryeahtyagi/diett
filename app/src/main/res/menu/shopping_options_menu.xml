@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/opt_clear"
+        android:icon="@drawable/ic_baseline_remove_shopping_cart_24"
+        android:title="Clear Shopping List"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/opt_transfer"
+        android:icon="@drawable/ic_baseline_move_to_inbox_24"
+        android:title="Move Marked to inventory"
+        app:showAsAction="ifRoom" />
+
+</menu>

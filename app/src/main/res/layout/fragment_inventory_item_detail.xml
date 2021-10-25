@@ -10,7 +10,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/ingredient_text_field"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Ingredient"
         app:layout_constraintTop_toTopOf="parent"
@@ -30,7 +30,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/category_text_field"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Category"
         android:layout_marginTop="@dimen/margin_between_elements"
@@ -90,12 +90,11 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/expiry_picker_field"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:hint="Expiry Date"
         app:startIconDrawable="@drawable/ic_calendar"
-        app:layout_constraintEnd_toStartOf="@id/is_frozen_switch"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/quantity_text_field">
 
@@ -110,14 +109,11 @@
         android:id="@+id/is_frozen_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="8dp"
+        android:layout_margin="@dimen/margin"
         android:checked="false"
         android:text="Frozen"
-        app:layout_constraintBottom_toBottomOf="@id/expiry_picker_field"
-        app:layout_constraintEnd_toStartOf="@id/frozen_icon"
-        app:layout_constraintStart_toEndOf="@id/expiry_picker_field"
-        app:layout_constraintTop_toTopOf="@+id/expiry_picker_field" />
+        app:layout_constraintTop_toBottomOf="@id/expiry_picker_field"
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <ImageView
         android:id="@+id/frozen_icon"
@@ -125,10 +121,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:src="@drawable/ic_frozen"
-        app:layout_constraintBottom_toBottomOf="@id/expiry_picker_field"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/is_frozen_switch"
         app:layout_constraintStart_toEndOf="@id/is_frozen_switch"
-        app:layout_constraintTop_toTopOf="@id/expiry_picker_field" />
+        app:layout_constraintTop_toTopOf="@id/is_frozen_switch" />
 
     <Button
         android:id="@+id/update_btn"
@@ -136,7 +131,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Update Item"
-        app:layout_constraintTop_toBottomOf="@id/expiry_picker_field"
+        app:layout_constraintTop_toBottomOf="@id/is_frozen_switch"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         />

@@ -42,8 +42,8 @@ interface IngredientDao {
     @Query("SELECT * FROM ingredient_category")
     fun getCategorisedIngredients(): Flow<List<CategorisedIngredients>>
 
-//    @Transaction
-//    @Query("SELECT * FROM ingredient WHERE categoryId = (SELECT id FROM ingredient_category WHERE categoryName = :cat_name)")
-//    fun getIngredientInCategory(cat_name: String): Flow<List<CategorisedIngredients>>
+    @Transaction
+    @Query("SELECT * FROM ingredient")
+    fun getIngredientsWithCategory(): Flow<List<IngredientWithCategory>>;
 
 }

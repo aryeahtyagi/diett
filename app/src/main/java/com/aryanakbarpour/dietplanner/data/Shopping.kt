@@ -19,19 +19,13 @@ data class ShoppingItemDetail(
     val checked: Boolean
 )
 
-data class IngredientShoppingItem(
-    @Embedded val ingredient: Ingredient,
-    @Relation(
-        parentColumn = "id",
-        entityColumn = "ingredientId"
-    )
-    val shoppingItemDetails: List<ShoppingItemDetail>
-)
-
 data class ShoppingItem (
     @Embedded
     val shoppingItemDetail: ShoppingItemDetail,
-    val ingredientName: String,
-    val categoryName: String
-
+    @Relation(
+        entity = Ingredient::class,
+        parentColumn = "ingredientId",
+        entityColumn = "id"
+    )
+    val ingredient: IngredientWithCategory,
 )

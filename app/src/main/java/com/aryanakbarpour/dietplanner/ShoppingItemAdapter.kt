@@ -33,7 +33,7 @@ class ShoppingItemAdapter() : ListAdapter<ShoppingItem, ShoppingItemAdapter.Item
         fun bind(item: ShoppingItem) {
 
             binding.apply {
-                ingredientName.text = item.ingredientName
+                ingredientName.text = item.ingredient.ingredient.ingredientName
                 quantity.text = item.shoppingItemDetail.quantity
 
                 if (item.shoppingItemDetail.checked)

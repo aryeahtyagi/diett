@@ -3,6 +3,7 @@ package com.aryanakbarpour.dietplanner.viewmodel
 import androidx.lifecycle.*
 import com.aryanakbarpour.dietplanner.data.*
 import kotlinx.coroutines.launch
+import java.util.*
 
 class ShoppingViewModel (private val shoppingDao: ShoppingDao, private val ingredientDao: IngredientDao) : ViewModel(){
 
@@ -40,31 +41,34 @@ class ShoppingViewModel (private val shoppingDao: ShoppingDao, private val ingre
         }
     }
 
-    private fun createShoppingItemDetailEntry(ingredientId: Long, quantityString: String, state: Boolean) : ShoppingItemDetail{
-        return ShoppingItemDetail(
-            ingredientId = ingredientId,
-            quantity = quantityString,
-            checked = state
-        )
+    fun addShoppingItemToInventory(ingredientId: Long, quantity: String, expiryDate: Date, frozen: Boolean){
+        viewModelScope.launch {
+            // Insert item
+            val newInventoryDetail = InventoryItemDetail(
+                ingredientId = ingredientId,
+                quantity = quantity,
+                expiry = expiryDate,
+                isFrozen = frozen
+            )
+            shoppingDao.insertInventoryItem(newInventoryDetail)
+        }
     }
 
     fun deleteShoppingItem(shoppingItemDetail: ShoppingItemDetail) {
         viewModelScope.launch { shoppingDao.deleteShoppingItem(shoppingItemDetail) }
     }
 
-    fun setCheckShoppingItem(shoppingItemDetail: ShoppingItemDetail, state: Boolean) : ShoppingItemDetail{
+    fun setCheckShoppingItem(shoppingItemDetail: ShoppingItemDetail, state: Boolean){
         val newItemDetail = ShoppingItemDetail(
             id = shoppingItemDetail.id,
             ingredientId = shoppingItemDetail.ingredientId,
             quantity = shoppingItemDetail.quantity,
             checked = state)
         updateShoppingItemDetail(newItemDetail)
-
-        return newItemDetail
     }
 
-    fun retrieveIngredientShoppingItems() : LiveData<List<IngredientShoppingItem>> {
-        return shoppingDao.getIngredientShoppingItems().asLiveData()
+    fun retrieveAllShoppingItems() : LiveData<List<ShoppingItem>> {
+        return shoppingDao.getShoppingItems().asLiveData()
     }
 
 
@@ -95,6 +99,10 @@ class ShoppingViewModel (private val shoppingDao: ShoppingDao, private val ingre
 
     fun addNewShoppingItem(categoryName: String, ingredientName: String, quantityString: String){
         insertShoppingItem(categoryName, ingredientName, quantityString)
+    }
+
+    fun retrieveMarkedItems() : LiveData<List<ShoppingItem>>{
+        return shoppingDao.getMarkedShoppingItems().asLiveData()
     }
 }
 

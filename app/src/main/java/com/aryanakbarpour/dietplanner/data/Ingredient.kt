@@ -33,3 +33,12 @@ data class CategorisedIngredients(
     )
     val ingredients: List<Ingredient>
 )
+
+data class IngredientWithCategory(
+    @Embedded val ingredient: Ingredient,
+    @Relation(
+        parentColumn = "categoryId",
+        entityColumn = "id"
+    )
+    val category: IngredientCategory
+)

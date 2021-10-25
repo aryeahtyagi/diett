@@ -10,6 +10,9 @@ interface ShoppingDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertShoppingItem(shoppingItemDetail: ShoppingItemDetail) : Long
 
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertInventoryItem(inventoryItemDetail: InventoryItemDetail) : Long
+
     @Delete
     suspend fun deleteShoppingItem(shoppingItemDetail: ShoppingItemDetail)
 
@@ -20,8 +23,16 @@ interface ShoppingDao {
     fun getShoppingItemDetails() : Flow<List<ShoppingItemDetail>>
 
     @Transaction
-    @Query("SELECT * FROM ingredient")
-    fun getIngredientShoppingItems(): Flow<List<IngredientShoppingItem>>
+    @Query("SELECT * FROM shopping_item WHERE checked=1")
+    fun getMarkedShoppingItems(): Flow<List<ShoppingItem>>
+
+    @Transaction
+    @Query("SELECT * FROM shopping_item ORDER BY checked")
+    fun getShoppingItems(): Flow<List<ShoppingItem>>
+
+    @Transaction
+    @Query("SELECT * FROM shopping_item WHERE id=:id")
+    fun getShoppingItemById(id: Long): Flow<List<ShoppingItem>>
 
 
 }
