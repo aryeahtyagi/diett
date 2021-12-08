@@ -1,4 +1,4 @@
-package com.aryanakbarpour.dietplanner
+package com.aryanakbarpour.dietplanner.shopping
 
 import android.R
 import android.os.Bundle
@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.aryanakbarpour.dietplanner.DietPlannerApplication
 import com.aryanakbarpour.dietplanner.databinding.FragmentShoppingAddItemBinding
 import com.aryanakbarpour.dietplanner.viewmodel.ShoppingViewModel
 import com.aryanakbarpour.dietplanner.viewmodel.ShoppingViewModelFactory

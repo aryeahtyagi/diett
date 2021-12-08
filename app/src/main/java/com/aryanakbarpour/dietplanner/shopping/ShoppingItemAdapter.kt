@@ -1,4 +1,4 @@
-package com.aryanakbarpour.dietplanner
+package com.aryanakbarpour.dietplanner.shopping
 
 import android.graphics.Paint
 import android.view.LayoutInflater
@@ -9,11 +9,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aryanakbarpour.dietplanner.data.ShoppingItem
 import com.aryanakbarpour.dietplanner.databinding.ShoppingItemBinding
 
-class ShoppingItemAdapter() : ListAdapter<ShoppingItem, ShoppingItemAdapter.ItemViewHolder>(DiffCallback) {
+class ShoppingItemAdapter() : ListAdapter<ShoppingItem, ShoppingItemAdapter.ItemViewHolder>(
+    DiffCallback
+) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): ShoppingItemAdapter.ItemViewHolder {
+    ): ItemViewHolder {
         return ItemViewHolder(
             ShoppingItemBinding.inflate(
                 LayoutInflater.from(parent.context)
@@ -22,7 +24,7 @@ class ShoppingItemAdapter() : ListAdapter<ShoppingItem, ShoppingItemAdapter.Item
     }
 
 
-    override fun onBindViewHolder(holder: ShoppingItemAdapter.ItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val current = getItem(position)
         holder.bind(current)
     }

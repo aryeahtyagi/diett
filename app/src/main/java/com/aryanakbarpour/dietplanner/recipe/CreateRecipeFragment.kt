@@ -1,4 +1,4 @@
-package com.aryanakbarpour.dietplanner
+package com.aryanakbarpour.dietplanner.recipe
 
 import android.app.Activity
 import android.app.Dialog
@@ -15,6 +15,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.aryanakbarpour.dietplanner.DietPlannerApplication
+import com.aryanakbarpour.dietplanner.R
 import com.aryanakbarpour.dietplanner.databinding.FragmentCreateRecipeBinding
 import com.aryanakbarpour.dietplanner.viewmodel.RecipeIngredientModel
 import com.aryanakbarpour.dietplanner.viewmodel.RecipeViewModel
@@ -219,7 +221,7 @@ class CreateRecipeFragment : Fragment() {
      * Create and sets the adapter for units field
      */
     private fun setupUnitField(context: Context, field: MaterialAutoCompleteTextView) {
-        val units = resources.getStringArray(com.aryanakbarpour.dietplanner.R.array.units)
+        val units = resources.getStringArray(R.array.units)
         val unitsAdapter = ArrayAdapter(context, android.R.layout.simple_list_item_1, units)
         field.setAdapter(unitsAdapter)
     }

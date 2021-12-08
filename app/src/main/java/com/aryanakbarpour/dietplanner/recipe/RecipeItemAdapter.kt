@@ -1,4 +1,4 @@
-package com.aryanakbarpour.dietplanner
+package com.aryanakbarpour.dietplanner.recipe
 
 import android.net.Uri
 import android.view.LayoutInflater
@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aryanakbarpour.dietplanner.data.Recipe
 import com.aryanakbarpour.dietplanner.databinding.RecipeItemBinding
 
-class RecipeItemAdapter(private val onItemClicked: (Recipe) -> Unit) : ListAdapter<Recipe, RecipeItemAdapter.ItemViewHolder>(DiffCallback) {
+class RecipeItemAdapter(private val onItemClicked: (Recipe) -> Unit) : ListAdapter<Recipe, RecipeItemAdapter.ItemViewHolder>(
+    DiffCallback
+) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -19,7 +21,7 @@ class RecipeItemAdapter(private val onItemClicked: (Recipe) -> Unit) : ListAdapt
         )
     }
 
-    override fun onBindViewHolder(holder: RecipeItemAdapter.ItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val current = getItem(position)
         holder.itemView.setOnClickListener { onItemClicked(current) }
         holder.bind(current)

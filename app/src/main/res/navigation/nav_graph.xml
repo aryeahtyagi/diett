@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/inventoryFragment"
-        android:name="com.aryanakbarpour.dietplanner.InventoryFragment"
+        android:name="com.aryanakbarpour.dietplanner.inventory.InventoryFragment"
         android:label="fragment_inventory"
         tools:layout="@layout/fragment_inventory" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/inventoryAddItem"
-        android:name="com.aryanakbarpour.dietplanner.InventoryAddItem"
+        android:name="com.aryanakbarpour.dietplanner.inventory.InventoryAddItem"
         android:label="fragment_inventory_add_item"
         tools:layout="@layout/fragment_inventory_add_item" >
         <action
@@ -27,13 +27,8 @@
             app:destination="@id/inventoryFragment" />
     </fragment>
     <fragment
-        android:id="@+id/mealPlanFragment"
-        android:name="com.aryanakbarpour.dietplanner.MealPlanFragment"
-        android:label="fragment_meal_plan"
-        tools:layout="@layout/fragment_meal_plan" />
-    <fragment
         android:id="@+id/shoppingListFragment"
-        android:name="com.aryanakbarpour.dietplanner.ShoppingListFragment"
+        android:name="com.aryanakbarpour.dietplanner.shopping.ShoppingListFragment"
         android:label="fragment_shopping_list"
         tools:layout="@layout/fragment_shopping_list" >
         <action
@@ -51,7 +46,7 @@
     </fragment>
     <fragment
         android:id="@+id/inventoryIteamDetailFragment"
-        android:name="com.aryanakbarpour.dietplanner.InventoryItemDetailFragment"
+        android:name="com.aryanakbarpour.dietplanner.inventory.InventoryItemDetailFragment"
         android:label="fragment_inventory_item_detail"
         tools:layout="@layout/fragment_inventory_item_detail" >
         <argument
@@ -63,7 +58,7 @@
     </fragment>
     <fragment
         android:id="@+id/shoppingAddItemFragment"
-        android:name="com.aryanakbarpour.dietplanner.ShoppingAddItemFragment"
+        android:name="com.aryanakbarpour.dietplanner.shopping.ShoppingAddItemFragment"
         android:label="fragment_shopping_add_item"
         tools:layout="@layout/fragment_shopping_add_item" >
         <action
@@ -72,7 +67,7 @@
     </fragment>
     <fragment
         android:id="@+id/recipesListFragment"
-        android:name="com.aryanakbarpour.dietplanner.RecipesListFragment"
+        android:name="com.aryanakbarpour.dietplanner.recipe.RecipesListFragment"
         android:label="fragment_recipes_list"
         tools:layout="@layout/fragment_recipes_list" >
         <action
@@ -84,7 +79,7 @@
     </fragment>
     <fragment
         android:id="@+id/createRecipeFragment"
-        android:name="com.aryanakbarpour.dietplanner.CreateRecipeFragment"
+        android:name="com.aryanakbarpour.dietplanner.recipe.CreateRecipeFragment"
         android:label="fragment_create_recipe"
         tools:layout="@layout/fragment_create_recipe" >
         <action
@@ -93,7 +88,7 @@
     </fragment>
     <fragment
         android:id="@+id/recipeDetailFragment"
-        android:name="com.aryanakbarpour.dietplanner.RecipeDetailFragment"
+        android:name="com.aryanakbarpour.dietplanner.recipe.RecipeDetailFragment"
         android:label="fragment_recipe_detail"
         tools:layout="@layout/fragment_recipe_detail" >
         <argument
@@ -103,4 +98,9 @@
             android:id="@+id/action_recipeDetailFragment_to_recipesListFragment"
             app:destination="@id/recipesListFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/recipesFragment"
+        android:name="com.aryanakbarpour.dietplanner.recipe.RecipesFragment"
+        android:label="fragment_recipes"
+        tools:layout="@layout/fragment_recipes" />
 </navigation>

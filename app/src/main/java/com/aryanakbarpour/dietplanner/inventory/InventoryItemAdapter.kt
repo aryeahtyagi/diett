@@ -1,4 +1,4 @@
-package com.aryanakbarpour.dietplanner
+package com.aryanakbarpour.dietplanner.inventory
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,7 +10,9 @@ import com.aryanakbarpour.dietplanner.databinding.InventoryItemBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
-class InventoryItemAdapter(private val onItemClicked: (InventoryItem) -> Unit) : ListAdapter<InventoryItem, InventoryItemAdapter.ItemViewHolder>(DiffCallback) {
+class InventoryItemAdapter(private val onItemClicked: (InventoryItem) -> Unit) : ListAdapter<InventoryItem, InventoryItemAdapter.ItemViewHolder>(
+    DiffCallback
+) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -22,7 +24,7 @@ class InventoryItemAdapter(private val onItemClicked: (InventoryItem) -> Unit) :
         )
     }
 
-    override fun onBindViewHolder(holder: InventoryItemAdapter.ItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val current = getItem(position)
         holder.itemView.setOnClickListener { onItemClicked(current) }
         holder.bind(current)

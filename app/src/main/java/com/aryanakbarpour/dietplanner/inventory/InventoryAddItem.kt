@@ -1,4 +1,4 @@
-package com.aryanakbarpour.dietplanner
+package com.aryanakbarpour.dietplanner.inventory
 
 import android.R
 import android.app.DatePickerDialog
@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.aryanakbarpour.dietplanner.DietPlannerApplication
 import com.aryanakbarpour.dietplanner.databinding.FragmentInventoryAddItemBinding
 import com.aryanakbarpour.dietplanner.viewmodel.InventoryViewModel
 import com.aryanakbarpour.dietplanner.viewmodel.InventoryViewModelFactory

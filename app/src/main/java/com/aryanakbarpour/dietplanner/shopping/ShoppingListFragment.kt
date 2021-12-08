@@ -1,4 +1,4 @@
-package com.aryanakbarpour.dietplanner
+package com.aryanakbarpour.dietplanner.shopping
 
 import android.app.DatePickerDialog
 import android.app.Dialog
@@ -13,6 +13,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.aryanakbarpour.dietplanner.DietPlannerApplication
+import com.aryanakbarpour.dietplanner.R
+import com.aryanakbarpour.dietplanner.SwipeGesture
 import com.aryanakbarpour.dietplanner.data.ShoppingItem
 import com.aryanakbarpour.dietplanner.databinding.FragmentShoppingListBinding
 import com.aryanakbarpour.dietplanner.viewmodel.ShoppingViewModel
@@ -187,7 +190,7 @@ class ShoppingListFragment : Fragment() {
      * Create and sets the adapter for units field
      */
     private fun setupUnitField(context: Context, field: MaterialAutoCompleteTextView) {
-        val units = resources.getStringArray(com.aryanakbarpour.dietplanner.R.array.units)
+        val units = resources.getStringArray(R.array.units)
         val unitsAdapter = ArrayAdapter(context, android.R.layout.simple_list_item_1, units)
         field.setAdapter(unitsAdapter)
     }

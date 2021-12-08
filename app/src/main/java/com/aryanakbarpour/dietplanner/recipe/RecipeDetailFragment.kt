@@ -1,4 +1,4 @@
-package com.aryanakbarpour.dietplanner
+package com.aryanakbarpour.dietplanner.recipe
 
 import android.net.Uri
 import android.os.Bundle
@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.aryanakbarpour.dietplanner.DietPlannerApplication
+import com.aryanakbarpour.dietplanner.R
 import com.aryanakbarpour.dietplanner.data.Recipe
 import com.aryanakbarpour.dietplanner.databinding.FragmentRecipeDetailBinding
 import com.aryanakbarpour.dietplanner.viewmodel.RecipeViewModel

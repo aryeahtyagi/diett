@@ -9,8 +9,8 @@
         android:title="Shipping List"
         android:icon="@drawable/ic_shoppinglist"/>
     <item
-        android:id="@+id/mealPlanFragment"
-        android:title="Meal Plan"
+        android:id="@+id/recipesFragment"
+        android:title="Recipes"
         android:icon="@drawable/ic_mealplan"/>
     <item
         android:id="@+id/profileFragment"

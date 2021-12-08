@@ -1,4 +1,4 @@
-package com.aryanakbarpour.dietplanner
+package com.aryanakbarpour.dietplanner.inventory
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.aryanakbarpour.dietplanner.DietPlannerApplication
 import com.aryanakbarpour.dietplanner.databinding.FragmentInventoryBinding
 import com.aryanakbarpour.dietplanner.viewmodel.InventoryViewModel
 import com.aryanakbarpour.dietplanner.viewmodel.InventoryViewModelFactory
