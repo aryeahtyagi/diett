@@ -9,11 +9,7 @@
         android:title="Shipping List"
         android:icon="@drawable/ic_shoppinglist"/>
     <item
-        android:id="@+id/recipesFragment"
+        android:id="@+id/recipesListFragment"
         android:title="Recipes"
         android:icon="@drawable/ic_mealplan"/>
-    <item
-        android:id="@+id/profileFragment"
-        android:title="Profile"
-        android:icon="@drawable/ic_profile"/>
 </menu>
